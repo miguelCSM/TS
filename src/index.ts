@@ -1,39 +1,44 @@
-// Implementar uina interfaz que acepte objetos
-
-interface SuperHeroe{
-    nombre:string;
-    edad:number;
-    direccion:Direccion;
-    mostrarDireccion:()=>string;
+// Destructuring de argumentos
+interface Producto{
+    desc:string; // Descripción del producto
+    precio: number;
 }
 
-interface Direccion{
-    calle: string;
-    municipio: string;
-    estado:string;
-    pais:string;
+const sonaja: Producto={
+    desc:'Sonaja',
+    precio: 100
 }
 
-//Crear nuevo superHeroe
-const superHeore1:SuperHeroe={
-    nombre: "Thor",
-    edad:30,
-    direccion:{
-        calle: "Strike ln",
-        municipio: "Melbourne",
-        estado: "FL",
-        pais:"USA"
-    },
-    mostrarDireccion(){
-        return this.nombre + ', ' + this.direccion.calle + ', ' + this.direccion.pais;
-    }
+const  maquillaje:Producto={
+    desc: 'Rubor',
+    precio: 80
+}
+// Recorrer arreglos por medio de foreach del arreglo
+// function calculaIVA(productos:Producto[]):number{
+//     let total = 0;
+//     productos.forEach((producto:Producto)=>{
+//         total += producto.precio;
+//     });
+//     return total*0.16;
+    
+// }
+
+// const iva = calculaIVA(productos);
+
+// console.log(iva)
+
+// Destructuring
+function calculaIVA(productos:Producto[]):[number,number]{
+    let total = 0;
+    productos.forEach((producto:Producto)=>{
+        total += producto.precio;
+    });
+    return [total,total*0.16 ];
+    
 }
 
-const direccion =  superHeore1.mostrarDireccion();
-console.log(direccion);
+const productos = [sonaja,maquillaje];
 
-// Ejercicio crear una interfaz que permita tomar los datos de clientes y empleado asociando
-// una interface persona :
-// Persona => nombre, telefono. direccion
-// Empleado => antiguedad, correo, funcion que  muestre los años de antiguedad
-// Cliente => RFC, dias credito, función que muestre los días de credito.
+const [total,iva] = calculaIVA(productos);
+
+console.log('total:', total,'\niva:',iva)
